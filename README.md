@@ -1,2 +1,7 @@
-# MERN-Heroku
-A template for creating full stack applications deployed on Heroku.
+# MERN-Heroku Template
+
+## Usage
+
+### Database URI
+
+Set the database URI in the .env file.

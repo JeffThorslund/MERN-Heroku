@@ -2,6 +2,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 
+const items = require('./routes/api/Items');
+
 require("dotenv").config();
 
 const app = express();
@@ -18,6 +20,10 @@ mongoose
   .then(() => console.log("MongoDB Connected"))
   .catch((err) => console.log(err));
 
+//Use Routes
+app.use('/api/items', items)
+
+//Connection Test
 app.get("/api/test", (req, res) => {
   res.send("This is a response from the server.");
 });
