@@ -1,17 +1,27 @@
-const express = require('express');
+const express = require("express");
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+
+require("dotenv").config();
 
 const app = express();
 
-app.get('/api/customers', (req, res) => {
-  const customers = [
-    {id: 1, firstName: 'John', lastName: 'Doe'},
-    {id: 2, firstName: 'Brad', lastName: 'Traversy'},
-    {id: 3, firstName: 'Mary', lastName: 'Swanson'},
-  ];
+//Bodyparser Middleware
+app.use(bodyParser.json());
 
-  res.json(customers);
+//Connect to Mongo
+mongoose
+  .connect(
+    process.env.MONGO_URI,
+    { useNewUrlParser: true, useUnifiedTopology: true }
+  )
+  .then(() => console.log("MongoDB Connected"))
+  .catch((err) => console.log(err));
+
+app.get("/api/test", (req, res) => {
+  res.send("This is a response from the server.");
 });
 
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 app.listen(port, () => `Server running on port ${port}`);
