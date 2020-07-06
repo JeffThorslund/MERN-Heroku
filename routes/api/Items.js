@@ -8,21 +8,29 @@ const Item = require("../../models/Item");
 // @desc   Get All Items
 // @access Public
 
-router.get("/", (req, res) => {
-  Item.find()
-    .sort({ date: -1 })
-    .then((items) => res.json(items));
+router.get("/update", (req, res) => {
+  Item.find().then((items) => res.json(items));
 });
 
 // @route  POST api/items
 // @desc   Create a Item
 // @access Public
 
-router.post("/", (req, res) => {
+router.post("/test", (req, res) => {
+  const newItem = new Item({
+    entry: req.body.entry,
+  });
+  newItem.save().then((item) => res.json(item));
+});
+
+// @route  POST api/items
+// @desc   Create a Item
+// @access Public
+
+router.post("/add", (req, res) => {
   const newItem = new Item({
     name: req.body.name,
   });
-
   newItem.save().then((item) => res.json(item));
 });
 

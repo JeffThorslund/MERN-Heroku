@@ -23,11 +23,6 @@ mongoose
 //Use Routes
 app.use('/api/items', items)
 
-//Connection Test
-app.get("/api/test", (req, res) => {
-  res.send("This is a response from the server.");
-});
-
 const port = process.env.PORT || 5000;
 
 app.listen(port, () => `Server running on port ${port}`);
